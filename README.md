@@ -1,224 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gazali AI - Your Intelligent Assistant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-blue: #007bff; /* A vibrant blue for accents */
-            --dark-blue: #0056b3;   /* A darker blue for hover states */
-            --light-gray: #f8f9fa;  /* Very light gray for background */
-            --medium-gray: #e9ecef; /* Slightly darker gray for containers */
-            --dark-gray: #343a40;   /* Dark charcoal for text */
-            --white: #ffffff;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gazali AI - Intelligent Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1128;
+      --copper: #b87333;
+      --copper-light: #ffb67f;
+      --gold: #FFD700;
+      --silver: #C0C0C0;
+      --white: #ffffff;
+      --gray: #e0e0e0;
+      --shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+      --radius: 12px;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-gray);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: var(--dark-gray);
-            line-height: 1.6;
-        }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, var(--navy) 70%, var(--copper) 30%);
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
 
-        .container {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            width: 90%;
-            max-width: 700px;
-            padding: 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+    .container {
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+      max-width: 850px;
+      width: 95%;
+      backdrop-filter: blur(15px);
+      position: relative;
+    }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: linear-gradient(to right, var(--primary-blue), var(--dark-blue));
-            border-top-left-radius: var(--border-radius);
-            border-top-right-radius: var(--border-radius);
-        }
+    .logo-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        h1 {
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            font-weight: 700;
-            font-size: 2.5em;
-        }
+    .logo-base {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--copper), var(--copper-light));
+      position: absolute;
+      box-shadow: 0 0 30px rgba(255,182,127,0.6), 0 6px 20px rgba(184,115,51,0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
-        .gazali-logo {
-            width: 80px;
-            height: 80px;
-            background-color: var(--primary-blue);
-            border-radius: 50%;
-            margin: 0 auto 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2.5em;
-            color: var(--white);
-            font-weight: 700;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
+    .logo-brain {
+      position: absolute;
+      width: 80px;
+      height: 60px;
+      background: 
+        radial-gradient(circle at 20px 25px, var(--gold) 8px, transparent 8px),
+        radial-gradient(circle at 60px 25px, var(--gold) 8px, transparent 8px);
+      border-radius: 40px 40px 50px 50px;
+      box-shadow: 
+        0 5px 15px rgba(255,215,0,0.4),
+        inset 0 -5px 10px rgba(184,115,51,0.3);
+      z-index: 2;
+    }
 
-        p {
-            margin-bottom: 25px;
-            font-size: 1.1em;
-            color: #555;
-        }
+    .logo-brain:before {
+      content: '';
+      position: absolute;
+      width: 70px;
+      height: 40px;
+      top: 10px;
+      left: 5px;
+      border-radius: 35px 35px 45px 45px;
+      background: linear-gradient(to bottom, transparent 60%, rgba(255,215,0,0.3) 100%);
+    }
 
-        .input-group {
-            display: flex;
-            margin-bottom: 25px;
-            gap: 10px;
-        }
+    .logo-connections {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      z-index: 1;
+    }
 
-        input[type="text"] {
-            flex-grow: 1;
-            padding: 15px;
-            border: 1px solid var(--medium-gray);
-            border-radius: var(--border-radius);
-            font-size: 1em;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
+    .connection {
+      position: absolute;
+      background: var(--silver);
+      border-radius: 2px;
+      opacity: 0.8;
+    }
 
-        input[type="text"]:focus {
-            border-color: var(--primary-blue);
-        }
+    .connection-1 {
+      width: 40px;
+      height: 3px;
+      top: 30px;
+      left: 20px;
+      transform: rotate(45deg);
+      box-shadow: 0 0 8px rgba(192,192,192,0.7);
+    }
 
-        button {
-            padding: 15px 25px;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
+    .connection-2 {
+      width: 40px;
+      height: 3px;
+      top: 30px;
+      right: 20px;
+      transform: rotate(-45deg);
+      box-shadow: 0 0 8px rgba(192,192,192,0.7);
+    }
 
-        button:hover {
-            background-color: var(--dark-blue);
-            transform: translateY(-2px);
-        }
+    .connection-3 {
+      width: 3px;
+      height: 40px;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 8px rgba(192,192,192,0.7);
+    }
 
-        #gazali-response {
-            background-color: var(--medium-gray);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            min-height: 60px;
-            text-align: left;
-            word-wrap: break-word;
-            line-height: 1.8;
-            color: var(--dark-gray);
-            font-size: 1.05em;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-style: italic;
-        }
+    .logo-sparkles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+    }
 
-        #gazali-response.active {
-            animation: fadeIn 0.5s ease-in-out;
-        }
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: sparkle 3s infinite;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .sparkle-1 {
+      top: 15px;
+      left: 25px;
+      animation-delay: 0s;
+    }
 
-        footer {
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
+    .sparkle-2 {
+      top: 20px;
+      right: 30px;
+      animation-delay: 0.5s;
+    }
+
+    .sparkle-3 {
+      bottom: 25px;
+      left: 35px;
+      animation-delay: 1s;
+    }
+
+    .sparkle-4 {
+      bottom: 30px;
+      right: 25px;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    .logo-glow {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,182,127,0.3) 0%, rgba(184,115,51,0.1) 70%, transparent 100%);
+      animation: pulse 4s infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.1); opacity: 0.9; }
+    }
+
+    h1 {
+      font-size: 2.8em;
+      color: var(--copper-light);
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(255,182,127,0.3);
+    }
+
+    p {
+      color: var(--gray);
+      font-size: 1.2em;
+      margin-bottom: 25px;
+    }
+
+    .options { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 12px; 
+      justify-content: center; 
+      margin-bottom: 25px; 
+    }
+    
+    .options button { 
+      flex: 1 1 calc(33.333% - 12px); 
+      min-width: 150px;
+      padding: 14px; 
+      border: none; 
+      border-radius: var(--radius); 
+      background: linear-gradient(135deg, var(--copper), var(--copper-light)); 
+      color: var(--navy); 
+      cursor: pointer; 
+      font-weight: 700; 
+      transition: transform 0.2s, box-shadow 0.3s; 
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .options button:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 6px 18px rgba(255,182,127,0.5); 
+    }
+
+    .input-group { 
+      display: flex; 
+      gap: 12px; 
+      margin-bottom: 25px; 
+    }
+    
+    input[type="text"] { 
+      flex-grow: 1; 
+      padding: 14px; 
+      border-radius: var(--radius); 
+      border: none; 
+      outline: none; 
+      font-size: 1.05em; 
+      color: var(--navy); 
+      background: rgba(255,255,255,0.9);
+      font-family: 'Anek Latin', sans-serif;
+      font-weight: 500;
+    }
+    
+    input[type="text"]::placeholder {
+      color: rgba(10, 17, 40, 0.6);
+      font-family: 'Anek Latin', sans-serif;
+      font-weight: 500;
+    }
+    
+    button.send-btn { 
+      padding: 14px 22px; 
+      font-weight: 700; 
+      background: linear-gradient(135deg, var(--copper), var(--copper-light));
+      color: var(--navy);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    button.send-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(255,182,127,0.5);
+    }
+
+    #response { 
+      background: rgba(255,255,255,0.1); 
+      border-radius: var(--radius); 
+      padding: 22px; 
+      min-height: 80px; 
+      color: var(--copper-light); 
+      font-size: 1.1em; 
+      transition: all 0.3s ease; 
+      text-align: left; 
+      white-space: pre-line;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    footer { 
+      margin-top: 30px; 
+      font-size: 0.9em; 
+      color: var(--gray); 
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="gazali-logo">G</div>
-        <h1>Meet Gazali</h1>
-        <p>Your intelligent assistant, ready to answer your questions.</p>
-
-        <div class="input-group">
-            <input type="text" id="user-input" placeholder="Ask Gazali anything...">
-            <button onclick="getGazaliAnswer()">Ask</button>
+  <div class="container">
+    <div class="logo-container">
+      <div class="logo-glow"></div>
+      <div class="logo-base">
+        <div class="logo-connections">
+          <div class="connection connection-1"></div>
+          <div class="connection connection-2"></div>
+          <div class="connection connection-3"></div>
         </div>
-
-        <div id="gazali-response">
-            Gazali's response will appear here...
+        <div class="logo-brain"></div>
+        <div class="logo-sparkles">
+          <div class="sparkle sparkle-1"></div>
+          <div class="sparkle sparkle-2"></div>
+          <div class="sparkle sparkle-3"></div>
+          <div class="sparkle sparkle-4"></div>
         </div>
+      </div>
+    </div>
+    
+    <h1>Gazali AI</h1>
+    <p>Gazali AI — your ultra-intelligent assistant, able to answer any question with detailed, step-by-step explanations.</p>
 
-        <footer>
-            &copy; 2025 Gazali AI. All rights reserved.
-        </footer>
+    <div class="options">
+      <button onclick="askQuestion('What is Artificial Intelligence?')">What is AI?</button>
+      <button onclick="askQuestion('Explain a Malayalam poem')">Explain a poem</button>
+      <button onclick="askQuestion('Solve a math problem')">Solve math</button>
+      <button onclick="askQuestion('Tell me something interesting')">Something interesting</button>
+      <button onclick="askQuestion('Who created Gazali AI?')">Who created Gazali AI?</button>
+      <button onclick="askQuestion('Hi')">Say Hi</button>
+      <button onclick="askQuestion('Hello')">Say Hello</button>
+      <button onclick="askQuestion('How are you?')">How are you?</button>
+      <button onclick="askQuestion('What is your name?')">Your name</button>
+      <button onclick="askQuestion('What is the future of AI?')">Future of AI</button>
+      <button onclick="askQuestion('Thank you')">Thank you</button>
+      <button onclick="askQuestion('What time is it?')">Current time</button>
+      <button onclick="askQuestion('What is the date today?')">Today's date</button>
+      <button onclick="askQuestion('Help me with coding')">Coding help</button>
+      <button onclick="askQuestion('JavaScript question')">JavaScript</button>
+      <button onclick="askQuestion('Python question')">Python</button>
     </div>
 
-    <script>
-        function getGazaliAnswer() {
-            const userInput = document.getElementById('user-input').value.trim().toLowerCase();
-            const responseDiv = document.getElementById('gazali-response');
-            let answer = "I'm still learning, please try asking something different!";
+    <div class="input-group">
+      <input type="text" id="userInput" placeholder="Type your question...">
+      <button class="send-btn" onclick="getAnswer()">Ask</button>
+    </div>
 
-            if (userInput.includes("hello") || userInput.includes("hi")) {
-                answer = "Hello there! How can I assist you today?";
-            } else if (userInput.includes("how are you")) {
-                answer = "I am a program, so I don't have feelings, but I'm ready to help!";
-            } else if (userInput.includes("what is your name")) {
-                answer = "My name is Gazali, your intelligent assistant.";
-            } else if (userInput.includes("weather")) {
-                answer = "I don't have real-time weather data. Perhaps you could check a weather app?";
-            } else if (userInput.includes("time")) {
-                const now = new Date();
-                answer = `The current time is ${now.toLocaleTimeString()}.`;
-            } else if (userInput.includes("date")) {
-                const now = new Date();
-                answer = `Today's date is ${now.toLocaleDateString()}.`;
-            } else if (userInput.includes("thank you")) {
-                answer = "You're most welcome! Is there anything else I can do?";
-            } else if (userInput.includes("capabilities") || userInput.includes("can you do")) {
-                answer = "I can answer questions based on my programming, provide information, and engage in basic conversation. What would you like to know?";
-            } else if (userInput === "") {
-                answer = "Please type a question for Gazali!";
-            } else if (userInput.includes("what is ai")) {
-                answer = "AI, or Artificial Intelligence, is a broad field of computer science that enables machines to perform tasks that typically require human intelligence.";
-            } else if (userInput.includes("history of ai")) {
-                answer = "The concept of AI dates back to ancient times, but modern AI began with the development of programmable computers. The term 'artificial intelligence' was coined in 1956.";
-            } else if (userInput.includes("future of ai")) {
-                answer = "The future of AI holds immense potential, from advanced automation to personalized medicine and more sophisticated human-computer interactions.";
-            }
+    <div id="response">Gazali is ready to help you...</div>
+    <footer>&copy; 2025 Gazali AI. All rights reserved.</footer>
+  </div>
 
-            responseDiv.textContent = answer;
-            responseDiv.classList.add('active'); // Add class for animation
-            setTimeout(() => responseDiv.classList.remove('active'), 600); // Remove after animation
-            document.getElementById('user-input').value = ''; // Clear input
+  <script>
+    function askQuestion(q) {
+      document.getElementById('userInput').value = q;
+      getAnswer();
+    }
+
+    function getAnswer() {
+      const input = document.getElementById('userInput').value.trim();
+      const response = document.getElementById('response');
+      let answer = "Gazali: I am extremely capable. Please provide your question!";
+      const s = input.toLowerCase();
+
+      const knowledge = {
+        'hello': 'Hello! I am Gazali, ready to provide detailed answers.',
+        'hi': 'Hi there! Ask me anything and I will give a full answer.',
+        'how are you': 'I am fully operational and ready to assist!',
+        'your name': 'I am Gazali AI — your ultimate AI assistant.',
+        'what is artificial intelligence': 'AI (Artificial Intelligence) enables machines to perform tasks that require human intelligence such as reasoning, learning, and problem-solving.',
+        'what is ai': 'AI allows computers to perform intelligent tasks, from solving problems to understanding language.',
+        'future of ai': 'AI will transform industries, education, healthcare, and everyday life by enhancing efficiency and decision-making.',
+        'thank you': 'You\'re welcome! Ask me anything else and I\'ll provide a thorough explanation.',
+        'time': `Current time: ${new Date().toLocaleTimeString()}.`,
+        'date': `Today is: ${new Date().toLocaleDateString()}.`,
+        'malayalam poem': 'Gazali: Malayalam literature is rich and diverse. I can provide summaries or detailed explanations line-by-line.',
+        'solve math problem': 'Gazali: I can solve math problems step-by-step and explain each part clearly.',
+        'code': 'Gazali: I can assist with coding examples, debugging, and programming guidance.',
+        'javascript': 'Gazali: Ask me JavaScript questions, and I can explain or provide code samples.',
+        'python': 'Gazali: I can provide Python examples, code help, and detailed explanations.',
+        'who created gazali ai': 'Hasan Gazali, he is a motion designer from Kerala.',
+        'help': 'I can help with questions about AI, programming, math, literature, and more. Try asking me specific questions or use the buttons above.',
+        'good morning': 'Good morning! How can I assist you today?',
+        'good afternoon': 'Good afternoon! What would you like to know?',
+        'good evening': 'Good evening! I\'m here to help with your questions.',
+        'bye': 'Goodbye! Feel free to return if you have more questions.',
+        'goodbye': 'Goodbye! Have a great day.'
+      };
+
+      // Check for exact matches first
+      let matched = false;
+      for (const key in knowledge) {
+        if (s === key.toLowerCase()) {
+          answer = knowledge[key];
+          matched = true;
+          break;
         }
+      }
+      
+      // If no exact match, check for partial matches
+      if (!matched) {
+        for (const key in knowledge) {
+          if (s.includes(key)) {
+            answer = knowledge[key];
+            break;
+          }
+        }
+      }
 
-        // Allow pressing Enter to submit
-        document.getElementById('user-input').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                getGazaliAnswer();
-            }
-        });
-    </script>
+      response.textContent = answer;
+      document.getElementById('userInput').value = '';
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', function(e){
+      if(e.key === 'Enter') getAnswer();
+    });
+  </script>
 </body>
 </html>
